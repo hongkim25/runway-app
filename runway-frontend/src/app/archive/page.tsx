@@ -49,7 +49,7 @@ export default function ArchivePage() {
                 </div>
             ) : (
                 <div className="flex-1 flex flex-col items-center justify-center">
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">Archive Currently Empty</p>
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-white/50">History Currently Empty</p>
                 </div>
             )}
         </div>

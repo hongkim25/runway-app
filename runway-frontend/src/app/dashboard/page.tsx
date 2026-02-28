@@ -291,12 +291,12 @@ export default function DashboardPage() {
                                             <input
                                                 type="text"
                                                 className="w-full bg-black/5 border-b border-black/10 p-2 text-xs font-serif italic text-black focus:outline-none focus:border-black/40 transition-colors placeholder:text-black/30"
-                                                placeholder={`What must you do to earn this?`}
+                                                placeholder={`Task: What must you do to earn this item?`}
                                                 value={customTasks[idx] || ""}
                                                 onChange={(e) => handleCustomTaskChange(idx, e.target.value)}
                                                 onClick={(e) => e.stopPropagation()}
                                             />
-                                            <div className="text-[8px] text-black/20 mt-1 text-right italic uppercase tracking-widest">Autosaving to archive...</div>
+                                            <div className="text-[8px] text-black/20 mt-1 text-right italic uppercase tracking-widest">Saved to local storage</div>
                                         </div>
                                     </div>
                                 </div>
