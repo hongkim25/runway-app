@@ -100,16 +100,16 @@ export default function IntakeForm() {
       ></div>
       <div className="fixed inset-0 z-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
 
-      <main className="flex-1 flex flex-col items-center justify-center py-20 px-8 animate-fade-in relative z-10 w-full min-h-screen bg-black/60">
-        <div className="mb-20 text-center">
-          <h2 className="text-6xl md:text-8xl font-thin tracking-tighter mb-6 text-white drop-shadow-lg">Life is a runway.</h2>
-          <p className="text-white/60 tracking-[0.4em] uppercase text-[10px] font-medium">The Casting Call</p>
+      <main className="flex-1 flex flex-col items-center justify-center py-8 px-6 animate-fade-in relative z-10 w-full min-h-screen bg-black/60 overflow-hidden">
+        <div className="mb-8 text-center mt-[-40px]">
+          <h2 className="text-5xl md:text-7xl font-serif tracking-tighter mb-4 text-white ">Life is a runway.</h2>
+          <p className="text-white/60 tracking-[0.1em] uppercase text-[12px] font-medium">The Casting Call</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="w-full max-w-5xl space-y-16 bg-black/80 backdrop-blur-2xl p-12 md:p-16 border border-white/20 shadow-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-8 bg-black/80 backdrop-blur-2xl p-8 md:p-12 border border-white/20 shadow-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Left Column */}
-            <div className="space-y-12">
+            <div className="space-y-8">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-white/50 mb-4">Life Goal</label>
                 <input
@@ -150,7 +150,7 @@ export default function IntakeForm() {
             </div>
 
             {/* Right Column */}
-            <div className="space-y-12">
+            <div className="space-y-8">
               <div>
                 <label className="block text-[10px] uppercase tracking-[0.2em] text-white/50 mb-4">Designer</label>
                 <select
@@ -186,8 +186,8 @@ export default function IntakeForm() {
               </div>
 
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.2em] text-white/50 mb-4">Texture / Concept Source</label>
-                <div className="border border-white/20 p-8 flex flex-col items-center justify-center relative hover:border-white transition-colors h-32 group bg-black/50">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">Texture / Concept Source</label>
+                <div className="border border-white/20 p-2 flex flex-col items-center justify-center relative hover:border-white transition-colors h-24 group bg-black/50 overflow-hidden">
                   {image64 ? (
                     <div className="absolute inset-0 w-full h-full flex items-center justify-center p-2">
                       <img src={image64} alt="Preview" className="max-h-full max-w-full object-contain grayscale opacity-80" />
@@ -211,10 +211,10 @@ export default function IntakeForm() {
             </div>
           </div>
 
-          <div className="pt-16 flex justify-center">
+          <div className="pt-8 flex justify-center">
             <button
               type="submit"
-              className="bg-white text-black px-12 py-4 tracking-[0.3em] uppercase text-[10px] hover:bg-white/80 transition-colors"
+              className="bg-white text-black px-12 py-3 tracking-[0.3em] uppercase text-[10px] hover:bg-white/80 transition-colors"
             >
               Assemble Collection
             </button>
