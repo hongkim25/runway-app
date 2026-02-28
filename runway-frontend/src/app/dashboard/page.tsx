@@ -60,6 +60,16 @@ export default function DashboardPage() {
                 console.error("Failed to parse checked milestones", e);
             }
         }
+
+        // Load custom tasks
+        const savedTasks = localStorage.getItem("runwayCustomTasks");
+        if (savedTasks) {
+            try {
+                setCustomTasks(JSON.parse(savedTasks));
+            } catch (e) {
+                console.error("Failed to parse custom tasks", e);
+            }
+        }
     }, [percentage, finalImage, generatingFinal]);
 
     const handleCustomTaskChange = (idx: number, val: string) => {
@@ -254,31 +264,39 @@ export default function DashboardPage() {
                                         <div className="flex justify-between items-start mb-3">
                                             <span className="text-[10px] tracking-[0.3em] uppercase text-black/50">Item {idx + 1}</span>
 
-                                            {/* High Fashion Custom Checkbox */}
-                                            <div className="flex items-center gap-2">
-                                                <span className="text-[10px] uppercase tracking-widest text-black/40 bg-black/5 px-2 py-0.5 mr-2">{stage.target_percentage}%</span>
-                                                <div
-                                                    className={`w-4 h-4 flex items-center justify-center transition-colors
-                                                  ${isChecked ? 'bg-black border-black' : 'border border-black/20 bg-transparent'}`}
-                                                >
-                                                    {isChecked && (
-                                                        <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                                            <path strokeLinecap="square" strokeLinejoin="miter" d="M5 13l4 4L19 7" />
-                                                        </svg>
-                                                    )}
+                                            {/* High Fashion Explicit Checkbox */}
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[9px] uppercase tracking-widest text-black/30 border border-black/10 px-2 py-1">{stage.target_percentage}%</span>
+                                                <div className="flex items-center gap-2 group/check">
+                                                    <span className={`text-[9px] uppercase tracking-widest transition-opacity ${isChecked ? 'text-black font-semibold' : 'text-black/30 opacity-60 group-hover/check:opacity-100'}`}>
+                                                        {isChecked ? 'LOCKED IN' : 'UNLOCK'}
+                                                    </span>
+                                                    <div
+                                                        className={`w-7 h-7 rounded-full flex items-center justify-center transition-all border-2
+                                                      ${isChecked ? 'bg-black border-black shadow-lg scale-105' : 'border-black/20 bg-white group-hover/check:border-black'}`}
+                                                    >
+                                                        {isChecked && (
+                                                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                            </svg>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <h4 className="text-lg font-medium leading-tight mb-4 tracking-wide uppercase">{stage.clothing_item}</h4>
 
                                         <div className="w-full">
-                                            <textarea
-                                                className="w-full bg-black/5 border border-black/10 p-3 text-xs font-serif italic text-black focus:outline-none focus:border-black/40 resize-none min-h-[60px] transition-colors placeholder:text-black/30"
-                                                placeholder={`Action required for ${stage.clothing_item.toLowerCase()}?`}
+                                            <div className="text-[10px] uppercase tracking-[0.2em] text-black/40 mb-2">Milestone Proof / To-Do</div>
+                                            <input
+                                                type="text"
+                                                className="w-full bg-black/5 border-b border-black/10 p-2 text-xs font-serif italic text-black focus:outline-none focus:border-black/40 transition-colors placeholder:text-black/30"
+                                                placeholder={`What must you do to earn this?`}
                                                 value={customTasks[idx] || ""}
                                                 onChange={(e) => handleCustomTaskChange(idx, e.target.value)}
                                                 onClick={(e) => e.stopPropagation()}
                                             />
+                                            <div className="text-[8px] text-black/20 mt-1 text-right italic uppercase tracking-widest">Autosaving to archive...</div>
                                         </div>
                                     </div>
                                 </div>
