@@ -147,10 +147,10 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 h-full">
 
                 {/* Left Column: Mannequin/Final Synthesis */}
-                <div className="col-span-1 lg:col-span-4 flex flex-col border-r border-white/20 pr-8 min-h-[800px]">
+                <div className="col-span-1 lg:col-span-4 flex flex-col border-r border-white/20 pr-8 h-[calc(100vh-160px)]">
 
                     {/* Mannequin Image Stack / Final Look */}
-                    <div className="w-full h-full min-h-[800px] relative overflow-hidden bg-white border border-white/20 shadow-2xl flex items-center justify-center">
+                    <div className="w-full h-full relative overflow-hidden bg-white border border-white/20 shadow-2xl flex items-center justify-center">
 
                         {generatingFinal && (
                             <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/90 text-white">
@@ -225,7 +225,7 @@ export default function DashboardPage() {
 
                     <h3 className="text-[10px] tracking-[0.4em] font-light uppercase text-black/50 mb-2">The Collection Grid</h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto max-h-[750px] pr-2 custom-scrollbar">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto max-h-[550px] pr-2 custom-scrollbar">
                         {roadmap.map((stage, idx) => {
                             const imgBase64 = images && images[idx] && images[idx] !== "None" && images[idx].length > 50 ? images[idx] : null;
                             const isChecked = checkedMilestones.includes(idx);
