@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
@@ -11,6 +11,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -25,20 +31,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white min-h-screen flex selection:bg-white selection:text-black overflow-x-hidden`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased bg-black text-white min-h-screen flex selection:bg-white selection:text-black overflow-x-hidden`}>
         {/* Left Sidebar Navigation */}
         <aside className="w-64 border-r border-white/20 bg-black flex flex-col p-10 z-50 sticky top-0 h-screen shrink-0">
-          <Link href="/" className="text-xl tracking-[0.4em] font-light uppercase text-white mb-20 hover:text-gray-400 transition-colors">
+          <Link href="/" className="text-3xl tracking-[0.05em] font-light uppercase text-white mb-20 hover:text-gray-400 transition-colors">
             RUNWAY
           </Link>
           <nav className="flex flex-col gap-10 flex-1">
-            <Link href="/" className="text-[10px] tracking-widest uppercase text-gray-400 hover:text-white transition-colors">
+            <Link href="/" className="text-[14px] tracking-wide uppercase text-gray-200 hover:text-white transition-colors">
               The Casting Call
             </Link>
-            <Link href="/dashboard" className="text-[10px] tracking-widest uppercase text-gray-400 hover:text-white transition-colors">
+            <Link href="/dashboard" className="text-[14px] tracking-wide uppercase text-gray-200 hover:text-white transition-colors">
               Season Dashboard
             </Link>
-            <Link href="/archive" className="text-[10px] tracking-widest uppercase text-gray-400 hover:text-white transition-colors">
+            <Link href="/archive" className="text-[14px] tracking-wide uppercase text-gray-200 hover:text-white transition-colors">
               Past Seasons
             </Link>
           </nav>
