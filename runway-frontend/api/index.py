@@ -48,8 +48,8 @@ class CampaignData(BaseModel):
     roadmap: list[RoadmapStage]
     images: list[str]
 
-# Ensure campaigns directory exists
-os.makedirs("campaigns", exist_ok=True)
+# Ensure campaigns directory exists in /tmp (writable in Vercel Serverless)
+os.makedirs("/tmp/campaigns", exist_ok=True)
 
 # Initialize GenAI Client
 client = genai.Client()
@@ -162,7 +162,7 @@ async def generate_runway(request: RunwayRequest):
             "designer": request.designer
         }
         
-        with open(f"campaigns/{campaign_id}.json", "w") as f:
+        with open(f"/tmp/campaigns/{campaign_id}.json", "w") as f:
             json.dump(campaign_data, f)
                 
         # Return just the pointer ID to the frontend
@@ -178,7 +178,7 @@ async def generate_runway(request: RunwayRequest):
 @app.post("/api/generate-final-look")
 async def generate_final_look(req: dict):
     campaign_id = req.get("campaign_id")
-    file_path = f"campaigns/{campaign_id}.json"
+    file_path = f"/tmp/campaigns/{campaign_id}.json"
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="Campaign not found")
         
@@ -221,7 +221,7 @@ async def generate_final_look(req: dict):
 
 @app.get("/api/campaign/{campaign_id}")
 async def get_campaign(campaign_id: str):
-    file_path = f"campaigns/{campaign_id}.json"
+    file_path = f"/tmp/campaigns/{campaign_id}.json"
     if os.path.exists(file_path):
         with open(file_path, "r") as f:
             return json.load(f)
