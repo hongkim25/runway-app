@@ -37,7 +37,7 @@ export default function IntakeForm() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/generate-runway", {
+      const res = await fetch("/api/generate-runway", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
