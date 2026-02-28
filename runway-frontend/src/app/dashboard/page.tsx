@@ -39,7 +39,10 @@ export default function DashboardPage() {
         setTargetDate(storedDate);
 
         if (campaignId) {
-            fetch(`/api/campaign/${campaignId}`)
+            const apiUrl = process.env.NODE_ENV === "development"
+                ? `http://127.0.0.1:8000/api/campaign/${campaignId}`
+                : `/api/campaign/${campaignId}`;
+            fetch(apiUrl)
                 .then(res => res.json())
                 .then(parsed => {
                     setRoadmap(parsed.roadmap || []);
@@ -82,7 +85,10 @@ export default function DashboardPage() {
             if (!finalImage && !generatingFinal) {
                 setGeneratingFinal(true);
                 const campaignId = localStorage.getItem("runwayCampaignId");
-                fetch("/api/generate-final-look", {
+                const apiUrl = process.env.NODE_ENV === "development"
+                    ? "http://127.0.0.1:8000/api/generate-final-look"
+                    : "/api/generate-final-look";
+                fetch(apiUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ campaign_id: campaignId })

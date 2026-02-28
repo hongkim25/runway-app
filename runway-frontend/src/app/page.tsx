@@ -37,7 +37,11 @@ export default function IntakeForm() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/generate-runway", {
+      const apiUrl = process.env.NODE_ENV === "development"
+        ? "http://127.0.0.1:8000/api/generate-runway"
+        : "/api/generate-runway";
+
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
