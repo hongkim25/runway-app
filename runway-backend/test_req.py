@@ -10,6 +10,7 @@ try:
     print("Sending request...")
     res = requests.post("http://localhost:8000/api/generate-runway", json={
         "goal": "Graduation",
+        "target_date": "2026-04-30",
         "designer": "Dior",
         "color": "Black",
         "vibe": "Minimalist",
